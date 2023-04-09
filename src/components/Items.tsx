@@ -9,7 +9,7 @@ export default function Items() {
 
   const dispatch = useDispatch();
   const {query, orderBy, filter}: DataFromForm = useSelector(request); 
-  const results: number = useSelector(totalItems); 
+  const results: number = useSelector(totalItems);
   const booksItems: Item[] = getfilterItem(useSelector(books), filter); 
 
   
@@ -30,12 +30,14 @@ export default function Items() {
     );
   }
 
+
   return (
     <>
-      <div className="container">
-      <div className='info'>
+    <div className='container_main'>
+    <div className='info'>
         <h3 className='text'>Найдено всего: {results}</h3>
       </div>
+    <div className="container">
         {booksItems.map((item) => {
           let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
           let authors = item.volumeInfo.authors && Array.isArray(item.volumeInfo.authors)
@@ -45,6 +47,7 @@ export default function Items() {
             <>
             <Link to={`/${item.id}`}>
               <div
+                key={item.id}
                 className="card"
               >
                 <img src={thumbnail} alt="" />
@@ -57,8 +60,9 @@ export default function Items() {
             </>
           );
         })}
+      </div>
         <button className='search button_wide' onClick={loadMore}>
-        <h3>Еще</h3>
+          <h3>Еще</h3>
         </button>
       </div>
     </>

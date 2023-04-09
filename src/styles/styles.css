@@ -15,6 +15,9 @@ body {
 html {
   font-size: 75.5%;
 }
+.container_main {
+  margin: 0 auto;
+}
 .main {
   width: 100vw;
   height: 100vh;
@@ -130,12 +133,11 @@ label {
 }
 .info {
     font-size: 2rem;
-    align-items: center;
     width: auto;
     height: auto;
-    padding: 20px;
-    align-self: center;
+    padding-top: 20px;
     overflow: hidden;
+    text-align: center;
 }
 .text {
     position: relative;
@@ -153,9 +155,9 @@ label {
 }
 
 .button_wide {
-    align-self: center;
-    width: 80%;
-    height: 45px;
+  width: 80%;
+  display: block;
+  margin: 0 auto;
 }
 
 .item_container {
@@ -177,7 +179,7 @@ label {
   height: 35px;
 }
 .item_view-img {
-  width: 100px;
+  width: 300px;
   height: auto;
   background-position: center;
   background-repeat: no-repeat;
@@ -194,8 +196,31 @@ label {
   width: auto;
   height: min-content;
   overflow: hidden;
+  font-size: 1.5rem;
 }
 
 .hide {
   display: none;
+}
+.loading {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  margin: 30vh auto;
+  border: 2px dashed var(--secondary-color);
+  animation-name: search-fetching;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+@keyframes search-fetching {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(2);
+  }
 }

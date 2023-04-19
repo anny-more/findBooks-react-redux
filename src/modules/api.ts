@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { RequestType } from '../types';
 
-const MAX_RESULTS = 10;
-//const KEY1 = 'AIzaSyCYA3KyhuvIObcdVVCPbt6MfQ1LgKXIfxY';
+const MAX_RESULTS = 30;
 const KEY = 'AIzaSyAYPVByWgr_Zr80JwyqpK1pNGxxpPmRAS4';
 
 const getBooks = async ({query, orderBy, startIndex}: RequestType) => {
@@ -13,7 +12,6 @@ const getBooks = async ({query, orderBy, startIndex}: RequestType) => {
       if (response.status !== 200) {
         throw new Error('Error from api')
       }
-      console.log('response', response);
       const {totalItems, items } = response.data;
       return {totalItems, items };
     }

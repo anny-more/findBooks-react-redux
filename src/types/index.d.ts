@@ -8,7 +8,11 @@ export interface Item {
     title: string,
     authors?: string[],
     imageLink?: string[],
-    volumeInfo: VolumeInfoType, 
+    volumeInfo: VolumeInfoType,
+    accessInfo: {pdf: {
+        isAvailable,
+        acsTokenLink}
+    }
 }
 
 interface VolumeInfoType {

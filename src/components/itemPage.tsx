@@ -1,6 +1,7 @@
 import { useParams, useNavigate} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { books } from '../store/searchReducer';
+import Button from './button';
 
 export default function ItemPage() {
     const booksList = useSelector(books);
@@ -16,7 +17,7 @@ export default function ItemPage() {
     return (
        <div className='item_container'>
         <div className='item_view'>
-        <button className='search item_view-button' onClick = {goBack}><h3>Назад</h3></button>
+            <Button className='width' callback={goBack}>Назад</Button>
         <img className='item_view-img' src={thumbnail} alt="" />
         <h3 className='item_view-title'>{item.volumeInfo.title}</h3>
         <h4 className='item_view-author'>{item.volumeInfo.authors ? item.volumeInfo.authors.reduce((acc, item) => `${acc}, ${item}`)

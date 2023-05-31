@@ -1,0 +1,22 @@
+.search {
+  width: 100px;
+  height: 35px;
+  background-color: white;
+  background-image: linear-gradient(to right, white, #f3b0b0);
+  background-repeat: no-repeat;
+  background-size: 0 100%;
+  border: 2px solid #f3b0b0;
+  border-radius: 5px;
+  margin: 10px;
+  transition: 0.3s;
+  font-weight: bold;
+}
+.search:hover {
+  border-radius: 15px;
+  background-size: 100% 100%;
+}
+.width {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}

@@ -1,27 +1,30 @@
 import { Link } from "react-router-dom";
 import { Item } from "../types";
 import styles from  './card.module.css';
+import { useDispatch } from "react-redux";
+import { addViewBooks } from "../store/searchReducer";
 
 export default function Card(item: Item) {
-    let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
+  const dispatch = useDispatch();
+    let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail;
     let authors = item.volumeInfo.authors && Array.isArray(item.volumeInfo.authors)
       ? item.volumeInfo.authors[0]
       : '';
-    const pdfLink = item.accessInfo?.pdf && item.accessInfo.pdf?.acsTokenLink
+    const addBooks = () => {
+      dispatch(addViewBooks(item));
+    }
     return (
                 <div
                   key={item.id}
                   className={styles.card}
                 >
                   <Link to={`/${item.id}`}>
-                    <img className={styles.img} src={thumbnail} alt="" />
+                    <img className={styles.img} src={thumbnail} alt="" onClick={addBooks} />
                   </Link>
                   <div className={styles.info}>
                     <h3 className={styles.title}>{item.volumeInfo.title}</h3>
                     <p className={styles.authors}>{authors}</p>
-                    {pdfLink && <div className={styles.green}>PDF</div>}
                   </div>
-
                 </div>
             );
 

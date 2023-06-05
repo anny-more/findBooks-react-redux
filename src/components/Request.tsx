@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { searchBooks, newSearch, addBooks, search } from '../store/searchReducer';
@@ -16,6 +16,7 @@ export const SORT = ['relevance', 'newely'] as const;
 
 function Request() {
   const { register, handleSubmit } = useForm();
+  const [minimize, setMinimize] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -33,12 +34,13 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const {totalItems, items} = await getBooks({query, orderBy, startIndex: 0});
     dispatch(addBooks({totalItems, items}));
     dispatch(search(false));
+    setMinimize(true);
   };
 
   return (
     <>
-        <div className="header">
-            <h1>Найди свою книгу здесь</h1>
+        <div className={minimize ? ' header_mini' : 'header'}>
+            <h1 onClick={() => setMinimize(!minimize)}>Найди свою книгу здесь</h1>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <label className=""> 
                 <input
@@ -47,6 +49,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                 className="textinput"
                 type="text"
                 placeholder="Название книги"
+                onClick={() => setMinimize(false)}
                 />
                 <h3>Фильтр</h3>
                 <select
@@ -58,10 +61,7 @@ const onSubmit: SubmitHandler<FieldValues> = async (data) => {
                 form="form"
                 >
                     {CATEGORIES.map((item) => {return (
-                        <>
                         <option value={item}>{item}</option>
-                        </>
-    
                         )})}
                 </select>
                 <h3>Сортировка</h3>

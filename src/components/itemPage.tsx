@@ -1,33 +1,48 @@
-import { useParams, useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { books } from '../store/searchReducer';
+import { books, viewBooks } from '../store/searchReducer';
 import Button from './button';
+import styles from './itemPage.module.css';
+import Card from './card';
 
 export default function ItemPage() {
     const booksList = useSelector(books);
+    const viewBooksList = useSelector(viewBooks);
     const params = useParams();
     const navigate = useNavigate();
     const item = booksList.find(item => item.id === params.id);
+
     if (!item) {
         throw new Error('Item not found')
     }
-    let thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail;
+
+    const thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail;
     const goBack = () => navigate(-1);
 
     return (
-       <div className='item_container'>
-        <div className='item_view'>
-            <Button className='width' callback={goBack}>Назад</Button>
-        <img className='item_view-img' src={thumbnail} alt="" />
-        <h3 className='item_view-title'>{item.volumeInfo.title}</h3>
-        <h4 className='item_view-author'>{item.volumeInfo.authors ? item.volumeInfo.authors.reduce((acc, item) => `${acc}, ${item}`)
-            : ''}
-        </h4>
-        <p className='item_view-description'>{ item.volumeInfo.description ? item.volumeInfo.description : ''}</p>
-
+       <div className={styles.item_container}>
+        <Button className='width' callback={goBack}>Назад</Button>
+        <div className={styles.item_view}>
+            <div style={{backgroundImage: `url(${thumbnail})`}} className={styles.img}>
+            </div>
+            <div className={styles.info}>
+            <div className={styles.item_view}></div>
+            <h1>{item.volumeInfo.title}</h1>
+            <h2>{item.volumeInfo?.subtitle}</h2>
+            <h3>{item.volumeInfo.authors ? item.volumeInfo.authors.reduce((acc, item) => `${acc}, ${item}`)
+              : ''}
+            </h3>
+            <div className={styles.description}>{item.volumeInfo.description ? item.volumeInfo.description : '...'}</div>
+          </div>
         </div>
-        
+        <div className={styles.view}>
+          <p>Недавно смотрели</p>
+          {viewBooksList.map(item => {
+            return Card(item)
+          }
+          )}
+        </div>
         </div>
     )
- 
+
 };

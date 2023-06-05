@@ -9,6 +9,7 @@ function App() {
     <Routes>
         <Route path='/' element={<SearchPage/>}></Route> 
         <Route path='/:id' element={<ItemPage/>}></Route>
+        <Route index element={<SearchPage/>}></Route>
       </Routes>
     </>
     

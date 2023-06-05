@@ -6,7 +6,6 @@ const KEY = 'AIzaSyAYPVByWgr_Zr80JwyqpK1pNGxxpPmRAS4';
 
 const getBooks = async ({query, orderBy, startIndex}: RequestType) => {
     const BASEURL = `https://www.googleapis.com/books/v1/volumes?q=${query}&orderBy=${orderBy}&startIndex=${startIndex}&maxResults=${MAX_RESULTS}&key=${KEY}`;
-    console.log('BASEURL', BASEURL);
     try {
       const response = await axios.get(BASEURL);
       if (response.status !== 200) {

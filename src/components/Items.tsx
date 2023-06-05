@@ -26,7 +26,7 @@ export default function Items() {
     return (
       <>
         <div className="container">
-          {loading ? 'Loading' : ''}
+          {loading ? 'Loading...' : ''}
         </div>
       </>
     );
@@ -36,7 +36,7 @@ export default function Items() {
     <>
     <div className='container_main'>
       <div className='info'>
-        <h3 className='text'>Найдено всего: {results}</h3>
+        <h4 className='text'>Найдено всего: {results}</h4>
       </div>
     <div className="container">
         {booksItems.map((item) => {

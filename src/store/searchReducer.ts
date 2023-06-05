@@ -8,9 +8,13 @@ const searchSlice = createSlice({
         request: {query: '', filter: 'All', orderBy: 'relevance'} as DataFromForm,
         totalItems: 0,
         books: [] as Item[],
+        viewBooks: [] as Item[],
         isLoading: false,
     },
     reducers: {
+        addViewBooks(state, action) {
+            state.viewBooks.push(action.payload);
+        },
         addBooks(state, action) {
             state.totalItems = action.payload.totalItems;
             state.books = [...state.books, ...action.payload.items];
@@ -35,6 +39,6 @@ export const books = (state: RootState) : Item[] => state.search.books;
 export const totalItems = (state: RootState): number => state.search.totalItems;
 export const request = (state: RootState): DataFromForm => state.search.request;
 export const isLoading = (state: RootState): boolean => state.search.isLoading;
-
-export const {addBooks, searchBooks, newSearch, search} = searchSlice.actions;
+export const viewBooks = (state: RootState): Item[] => state.search.viewBooks;
+export const {addBooks, searchBooks, newSearch, search, addViewBooks} = searchSlice.actions;
 export default searchSlice.reducer;

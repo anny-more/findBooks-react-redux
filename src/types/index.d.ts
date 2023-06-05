@@ -6,10 +6,13 @@ export const AVAILABLE_CATEGORIES = ['All', 'Art', 'Architecture', 'Biography & 
 export interface Item {
     id: string,
     title: string,
+    selflink: string,
     authors?: string[],
     imageLink?: string[],
     volumeInfo: VolumeInfoType,
-    accessInfo: {pdf: {
+    accessInfo: {
+        country,
+        pdf: {
         isAvailable,
         acsTokenLink}
     }
@@ -17,6 +20,7 @@ export interface Item {
 
 interface VolumeInfoType {
     title: string,
+    subtitle?: string,
     categories?: string[],
     authors?: string[],
     imageLinks?: {smallThumbnail: string, thumbnail: string},

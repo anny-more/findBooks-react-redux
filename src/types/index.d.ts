@@ -26,7 +26,7 @@ interface VolumeInfoType {
     imageLinks?: {smallThumbnail: string, thumbnail: string},
     description?: string,
 }
-export const SORT = ['relevance', 'newely'] as const;
+export const SORT = ['relevance', 'newest'] as const;
 
 export type RequestType = {
     query: string,

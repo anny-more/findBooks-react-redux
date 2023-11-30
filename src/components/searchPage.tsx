@@ -1,3 +1,4 @@
+import React from 'react';
 import { Request } from './Request';
 import Items from './Items';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -9,12 +10,13 @@ export default function SearchPage() {
   const dispatch = useDispatch();
   return (
     <>
-        <ErrorBoundary
-          FallbackComponent={ErrorFallback}
-          onReset={() => dispatch(newSearch())}>
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={() => dispatch(newSearch())}
+      >
         <Request />
         <Items />
-        </ErrorBoundary>
+      </ErrorBoundary>
     </>
   );
 }

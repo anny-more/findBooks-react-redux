@@ -1,4 +1,4 @@
-import { ReactNode, MouseEventHandler } from 'react';
+import React, { ReactNode, MouseEventHandler } from 'react';
 import styles from './button.module.css';
 type Props = {
   children?: string | ReactNode;
@@ -7,13 +7,17 @@ type Props = {
   active?: boolean;
 };
 
-export default function Button({children, className, callback, active}: Props) {
+export default function Button({
+  children,
+  className,
+  callback,
+  active,
+}: Props) {
   const view = `${styles.search} ${className && styles[className]}`;
 
-    return (
-        <button className={view} onClick={callback} disabled={active}>
-          {children}
-        </button>
-    )
-
+  return (
+    <button className={view} onClick={callback} disabled={active}>
+      {children}
+    </button>
+  );
 }

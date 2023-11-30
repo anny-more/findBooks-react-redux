@@ -14,8 +14,8 @@ const getBooks = async ({query, orderBy, startIndex}: RequestType) => {
       const {totalItems, items } = response.data;
       return {totalItems, items };
     }
-    catch(e) {
-      throw new Error('Ошибка')
+    catch {
+      throw new Error('Error')
     }
       
 };
